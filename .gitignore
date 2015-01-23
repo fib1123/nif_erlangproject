@@ -3,5 +3,5 @@
 .idea/
 
 # Erlang compilation files
-.beam
-.so
+*.beam
+*.so

@@ -14,7 +14,7 @@
 -on_load(init/0).
 
 init() ->
-  ok = erlang:load_nif("./c_src/sort_nif", 0).
+  ok = erlang:load_nif("./c_so/sort_nif", 0).
 
 sort(_List) ->
   exit(nif_library_not_loaded).
