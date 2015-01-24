@@ -10,11 +10,14 @@
 -author("fib1123").
 
 %% API
--export([sort/1]).
+-export([sort/1, crash/1]).
 -on_load(init/0).
 
 init() ->
   ok = erlang:load_nif("./c_so/sort_nif", 0).
 
 sort(_List) ->
+  exit(nif_library_not_loaded).
+
+crash(_Int) ->
   exit(nif_library_not_loaded).

@@ -3,16 +3,27 @@ nif_erlangproject
 
 NIF demonstration for Programming in Erlang class
 
+Provides comparison of sorting between: built-in lists:sort, NIF implementation, ports implementation.
+Also shows behaviour of NIFs during crash when executing c part.
 
-using NIF part:
-1) cd nif/
+Build instructions:
 
-2) Compile c files:
+1) Use makefile:
 
-    gcc -o c_src/sort_nif.so -fpic -shared c_src/quicksort.c c_src/sort_nif.c
-3) Run erl and there type 
+```
+make
+```
 
-    c(sort_nif).
-4) You can sort list like that:
+2) Run erl on ./ebin
 
-    sort_nif:sort([5,4,3,2,1]).
+```
+erl -pa ./ebin
+```
+
+3) Load implemented modules
+
+```
+l(sort_nif).
+l(port_driver).
+l(test).
+```

@@ -39,7 +39,7 @@ stop() ->
 
 sort_test() ->
   List = lists:map(fun(_X) -> random:uniform(100000) end, lists:seq(1, 10000)),
-  io:format("LISTS:SORT~n"),
+  io:format("~nLISTS:SORT~n"),
   Sorted = lists:sort(List),
   test_avg(lists, sort, [List], 100),
   io:format("___________________________________~n~n"),

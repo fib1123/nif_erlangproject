@@ -37,9 +37,19 @@ static ERL_NIF_TERM sort_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]
     return enif_make_list_from_array(env, res, N);
 }
 
+static ERL_NIF_TERM crash(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]) {
+
+    int n;
+    if(!enif_get_int(env, argv[0], &n)) {
+        return enif_make_badarg(env);
+    }
+
+    return enif_make_int(env, n/0);
+}
 
 static ErlNifFunc nif_funcs[] = {
-    {"sort", 1, sort_nif}
+    {"sort", 1, sort_nif},
+    {"crash", 1, crash}
 };
 
 ERL_NIF_INIT(sort_nif, nif_funcs, NULL, NULL, NULL, NULL)
