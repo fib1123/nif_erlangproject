@@ -14,12 +14,8 @@
 
 
 start() ->
-  case erl_ddll:load_driver(".", "ports.so") of
-    ok -> ok;
-    {error, already_loaded} -> ok;
-    _ -> ok %exit({error, could_not_load_driver})
-  end,
-  spawn(?MODULE, init, ["./ports.so"]).
+  erl_ddll:load_driver("./c_so", "ports.so"),
+  spawn(?MODULE, init, ["./c_so/ports.so"]).
 
 init(SharedLib) ->
   register(port_sort, self()),

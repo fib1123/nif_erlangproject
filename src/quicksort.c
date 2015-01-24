@@ -37,4 +37,7 @@ void quicksorthybrid(int array[], int first, int last)
 			array[j] = key;
 		}
 		}
+
+		int in = first;
+
 }
