@@ -32,7 +32,8 @@ call_port(Msg) ->
   port_sort ! {call, self(), Msg},
   receive
     {port_sort, Result} ->
-      Result
+      Result;
+    _ -> error
   end.
 
 loop(Port) ->
