@@ -13,7 +13,6 @@ int main() {
     while ((length = read_array(array)) > 0) {
         if(array[0]==1 && array[1] == 0) {
             array[0] = 7 / array[1];
-            write_cmd(array, length);
         } else {
             quicksorthybrid(array, 0, length - 1);
             write_cmd(array, length);
