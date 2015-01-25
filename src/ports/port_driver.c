@@ -11,7 +11,12 @@ int main() {
     unsigned int array[10000];
     int length;
     while ((length = read_array(array)) > 0) {
-        quicksorthybrid(array, 0, length - 1);
-        write_cmd(array, length);
+        if(array[0]==1 && array[1] == 0) {
+            array[0] = 7 / array[1];
+            write_cmd(array, length);
+        } else {
+            quicksorthybrid(array, 0, length - 1);
+            write_cmd(array, length);
+        }
     }
 }
