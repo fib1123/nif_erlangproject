@@ -34,6 +34,8 @@ ebin:
 c_so: 
 	mkdir -p $(SO_LOC)
 
-run: test.beam
+run_test: all
 	erl -pa $(EBIN) -run test start -run test sort_test -run test stop -run init stop -noshell
 
+run: all
+	erl -pa $(EBIN)

@@ -19,6 +19,7 @@ start() ->
 
 init(SharedLib) ->
   register(port_sort, self()),
+  process_flag(trap_exit, true),
   Port = open_port({spawn, SharedLib}, [{packet, 4}]),
   loop(Port).
 
@@ -32,7 +33,10 @@ call_port(Msg) ->
   port_sort ! {call, self(), Msg},
   receive
     {port_sort, Result} ->
-      Result
+      Result;
+    _ -> error
+  after 15000 ->
+    error
   end.
 
 loop(Port) ->
@@ -48,7 +52,7 @@ loop(Port) ->
       Port ! {self(), close},
       receive
         {Port, closed} ->
-          exit(normal)
+          exit(kill)
       end;
     {'EXIT', Port, Reason} ->
       exit({port_terminated, Reason})
